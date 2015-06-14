@@ -10,10 +10,24 @@
   <body>
     <div>
     <ul>
-        <li><a href="/index">Home</a></li>          
+        <li><a href="/index">Home</a></li>
+        {% if g.user.is_authenticated() %}
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}">Log In</a></li>
+        {% endif %}         
     </ul>
     </div>
     <hr>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     {% block content %}
     {% endblock %}
   </body>
