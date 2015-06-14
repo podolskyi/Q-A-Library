@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - Q/A Library</title>
+    {% else %}
+    <title>Welcome to Q/A Library</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>
+    <ul>
+        <li><a href="/index">Home</a></li>          
+    </ul>
+    </div>
+    <hr>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

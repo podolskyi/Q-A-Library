@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hello, {{ user.nickname }}</h1>
+    {% for question in questions %}
+    <div><p>{{ question.author.nickname }} ask: <b>{{ question.body }}</b></p></div>    
+    {% endfor %}
+{% endblock %}
