@@ -1,6 +1,6 @@
 # Ignore everything in this directory
 *.pyc
-
+__pycash__
 # local TODO notes
 TODO
 
@@ -8,12 +8,13 @@ TODO
 *.coverage
 htmlcov
 cover
-
+db_repository/
 # temporary files
 *~
 
 # database files
 *.sqlite
+*.db
 
 # virtualenv environments
 flask*/

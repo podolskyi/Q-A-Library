@@ -8,13 +8,7 @@
       <p>
             Please enter your username and password<br>
             {{ form.username(size=20) }}<br>
-            {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}<br>
-          {{ form.password(size=20) }}<br>
-            {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}<br>
+            {{ form.password(size=20) }}<br>
       </p>
       <p>{{ form.remember_me }} Remember Me</p>
       <p><input type="submit" value="Sign In"></p>
