@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Hello, {{ user.username }}</h1>
+    <h2>Questions</h2>
+    {% include 'flash.html' %}
     {% for question in questions %}
-    <div><p>{{ question.author.username }} ask: <b>{{ question.text }}</b></p></div>    
+        {% include 'pr_question.html' %}   
     {% endfor %}
 {% endblock %}
+

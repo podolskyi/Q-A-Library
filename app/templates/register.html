@@ -2,26 +2,19 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% include 'flash.html' %}
   <h1>Register</h1>
   <form action="" method="post" name="login">
       {{ form.hidden_tag() }}
       <p>
             Please enter your username and password<br>
             {{ form.username(placeholder="username") }}<br>
-                {% if form.username.errors %}
-                    {% for error in form.username.errors %}
-                {{ error }}
+                {% for error in form.errors.username %}
+                <br><span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
-            {% endif %}
             {{ form.password(placeholder="password") }}<br>
                 {% if form.password.errors %}
                     {% for error in form.password.errors %}
-                        {{ error }}
-                    {% endfor %}
-                {% endif %}
-            {{ form.confirm(placeholder="confirm") }}<br>
-                {% if form.confirm.errors %}
-                    {% for error in form.confirm.errors %}
                         {{ error }}
                     {% endfor %}
                 {% endif %}

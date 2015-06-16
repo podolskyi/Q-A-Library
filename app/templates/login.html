@@ -2,15 +2,29 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% include 'flash.html' %}
   <h1>Sign In</h1>
   <form action="" method="post" name="login">
       {{ form.hidden_tag() }}
       <p>
             Please enter your username and password<br>
             {{ form.username(size=20) }}<br>
+            <div class="control-group{% if form.errors %} error{% endif %}">
+                        <div class="controls">
+                            {% for error in form.username.errors %}
+                                <span class="help-inline">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+            </div>
             {{ form.password(size=20) }}<br>
+            <div class="control-group{% if form.password.errors %} error{% endif %}">
+                        <div class="controls">
+                            {% for error in form.password.errors %}
+                                <span class="help-inline">{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+            </div>
       </p>
-      <p>{{ form.remember_me }} Remember Me</p>
       <p><input type="submit" value="Sign In"></p>
   </form>
 {% endblock %}
