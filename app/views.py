@@ -1,10 +1,11 @@
-from flask import render_template, flash, redirect, session, url_for, request, g
-from flask.ext.login import login_user, logout_user, current_user, login_required
+from flask import render_template, flash, redirect, \
+    url_for, request, g
+from flask.ext.login import login_user, logout_user, \
+    current_user, login_required
 from app import app, db, lm
 from datetime import datetime
 from .forms import LoginForm, RegisterForm, AskForm, AnswerForm
 from .models import User, Question, Answer
-from markupsafe import Markup
 
 
 @lm.user_loader
@@ -79,20 +80,6 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/user/<username>')
-@login_required
-def user(username):
-    user = User.query.filter_by(username=username).first()
-    if user is None:
-        # abort(404)
-        flash('User %s not found.' % username)
-        return redirect(url_for('index'))
-    question = User.question.order_by(Question.timestamp.desc()).all()
-    return render_template('user.html',
-                           user=user,
-                           question=question)
-
-
 @app.route('/ask',  methods=['GET', 'POST'])
 @login_required
 def ask():
@@ -142,7 +129,7 @@ def voting():
     id = request.args.get('id', None)
     q_id = request.args.get('q_id', None)
     if not id or not q_id:
-        abort(404)
+        abort(404)  # виправити
     answer = Answer.query.get_or_404(int(id))
     try:
         answer.upvote()

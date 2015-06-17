@@ -1,0 +1,10 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'flash.html' %}
+ <div class="page-header">
+    <h1>Hello, {{username}}</h1>
+    <img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=256) }}">
+</div>
+{% endblock %}

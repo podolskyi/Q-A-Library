@@ -3,11 +3,15 @@
 
 {% block content %}
 {% include 'flash.html' %}
-  <h1>Sign In</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+    <h3 class="panel-title">Log In</h3>
+    </div>
+    <div class="panel-body">
+    {# Form rendering #}
   <form action="" method="post" name="login">
       {{ form.hidden_tag() }}
-      <p>
-            Please enter your username and password<br>
+
             {{ form.username(size=20) }}<br>
             <div class="control-group{% if form.errors %} error{% endif %}">
                         <div class="controls">
@@ -17,14 +21,21 @@
                         </div>
             </div>
             {{ form.password(size=20) }}<br>
-            <div class="control-group{% if form.password.errors %} error{% endif %}">
+            <div class="control-group{% if form.errors %} error{% endif %}">
                         <div class="controls">
                             {% for error in form.password.errors %}
                                 <span class="help-inline">{{ error }}</span><br>
                             {% endfor %}
                         </div>
             </div>
-      </p>
-      <p><input type="submit" value="Sign In"></p>
+
+     
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Log In</button>
+        </div>
+      </div>
   </form>
+    </div>
+</div>
 {% endblock %}

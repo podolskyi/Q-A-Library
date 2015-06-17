@@ -1,0 +1,17 @@
+<table class="table table-hover">
+    <tr>
+        <td width="40px"><img src="{{ question.author.avatar(40) }}" /></td>
+        <td>
+            <p>{{ answer.author.username }} {{ momentjs(answer.timestamp).fromNow() }} Comment:</p>
+            <p>{{ answer.text }}</p>
+               
+            <h4 class="list-group-item-heading">{{ answer.vote }} votes
+                    {% if g.user.is_authenticated() %}
+                        {% if g.user.id != answer.user_id %}
+                            <p><a href="{{ url_for('voting', id=answer.id, q_id = question.id) }}" class="btn btn-info" role="button">Vote</a>
+                        {% endif %}
+                    {% endif %}</h4>
+
+        </td>
+    </tr>
+</table>

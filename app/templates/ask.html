@@ -1,0 +1,24 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+    {% include 'flash.html' %}
+    <div class="well">
+        <form class="form-horizontal" action="" method="post" name="question">
+            {{ form.hidden_tag() }}
+            <div class="control-group">
+                <label class="control-label" for="post">Ask something:</label>
+                <div class="controls">
+                    title: {{ form.title(size=200, maxlength=200)}}<br>
+                    Ask: {{ form.text(size=600, maxlength=600) }}
+                     {% for error in form.errors.text %}
+                        <span class="help-inline">[{{ error }}]</span><br>
+                    {% endfor %}
+                </div><br>
+                    <div class="controls">
+                    <input class="btn btn-primary" type="submit" value="Post You question">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'flash.html' %}
+<div class="well well-large">
+        <div class="pull-right">
+            <img src="{{ question.author.avatar(60) }}" class="img-polaroid"><br>
+            Author: {{ question.author.username }} <br>
+
+        </div>
+            <h4><p><strong>{{ question.title }}</strong></p></h4>
+            <hr>
+            <p>{{ question.text }}</p>
+
+</div>
+    <hr>
+    {% for answer in question.answer %}
+        {% include 'comment.html' %}
+    {% endfor %}
+    {% if g.user.is_authenticated() %}
+        You can comment question:
+        <form action="" method="post" name="answer">
+              {{ form.hidden_tag() }}
+              <p>
+                    {{ form.text(size=20) }}<br>
+              </p>
+              <p><input type="submit" value="Post Your Answer"></p>
+        </form>
+        {% else %}
+        If You want Answered or command, You need LogIn or Register
+        {% endif %} 
+{% endblock %}
