@@ -1,9 +1,10 @@
 from flask import render_template, flash, redirect, \
-    url_for, request, g
+    url_for, request, g, abort
 from flask.ext.login import login_user, logout_user, \
     current_user, login_required
 from app import app, db, lm
 from datetime import datetime
+
 from .forms import LoginForm, RegisterForm, AskForm, AnswerForm
 from .models import User, Question, Answer
 
@@ -129,7 +130,7 @@ def voting():
     id = request.args.get('id', None)
     q_id = request.args.get('q_id', None)
     if not id or not q_id:
-        abort(404)  # виправити
+        abort(404)
     answer = Answer.query.get_or_404(int(id))
     try:
         answer.upvote()
